@@ -1,0 +1,185 @@
+---
+title: "Untitled"
+author: "Zydrick Ceniza"
+date: "2023-10-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# RWorksheet_Ceniza#3b
+
+#### Zydrick Ceniza
+
+## 1. Create a data frame using the table below.
+
+a.  Write the codes.
+
+```{r}
+  res<-c(1:20)
+  Male<-1
+  Female<-2
+  sex<-c(Female,Female,Male,Female,Female,Female,Female,Female,Female,Female,Male,Female,Female,Female,Female,Female,Female,Female,Male,Female)
+  Farmer<-1
+  Driver<-2
+  Others<-3
+  father<-c(Farmer,Others,Others,Others,Farmer,Driver,Others,Farmer,Farmer,Farmer,Others,Driver,Farmer,Others,Others,Farmer,Others,Farmer,Driver,Farmer)
+  per<-c(5,7,3,8,5,9,6,7,8,4,7,5,4,7,8,8,3,11,7,6)
+  sib<-c(6,4,4,1,2,1,5,3,1,2,3,2,5,5,2,1,2,5,3,2)
+  Wood<-1
+  SemiConcrete<-2
+  Concrete<-3
+  th<-c(Wood,SemiConcrete,Concrete,Wood,Wood,Concrete,Concrete,Wood,SemiConcrete,Concrete,SemiConcrete,Concrete,SemiConcrete,SemiConcrete,Concrete,Concrete,Concrete,Concrete,Concrete,SemiConcrete)
+  
+num1a<-{
+  data.frame(
+  q=c(res),
+  w=c(sex),
+  e=c(father),
+  r=c(per),
+  t=c(sib),
+  y=c(th)
+) }
+colnames(num1a)<-c("Respondents","Sex","Fathers Occupation","Persons at Home","Siblings at School","Types of house")
+num1a
+
+
+```
+
+b.  Describe the data. Get the structure or the summary of the data
+
+```{r}
+str(num1a)
+```
+
+The Structure contains 6variables that contains 20 objects per variables
+
+c.  Is the mean number of siblings attending is 5?
+
+```{r}
+mean(num1a$`Siblings at School`)
+```
+
+No the mean is 2.95
+
+d.  Extract the 1st two rows and then all the columns using the subsetting functions. Write the codes and its output.
+
+```{r}
+num1a[1:2,]
+```
+
+e.  Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its result.
+
+```{r}
+e35<-c(3,5)
+e24<-c(2,4)
+num1a[e35,e24]
+```
+
+f.  Select the variable types of houses then store the vector that results as types_houses. Write the codes.
+
+```{r}
+types_houses<-c("Wood","Semi-Concrete","Concrete")
+types_houses
+```
+
+g.  Select only all Males respondent that their father occupation was farmer. Write the codes and its output.
+
+```{r}
+g<-subset(num1a, sex==Male & `Fathers Occupation`==Farmer)
+g
+```
+
+h.  Select only all females respondent that have greater than or equal to 5 number of siblings attending school. Write the codes and its outputs.
+
+```{r}
+subset_result <- subset(num1a,Sex == 2 & `Siblings at School` >= 5, )
+subset_result
+
+```
+
+### 2. Write a R program to create an empty data frame. Using the following codes:
+
+df = data.frame(Ints=integer(), Doubles=double(), Characters=character(), Logicals=logical(), Factors=factor(), stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:") print(str(df))
+
+```{r}
+df = data.frame(Ints=integer(),
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+```
+
+a.  Describe the results. there are no objects in 5 variables
+
+### 3. Create a .csv file of this. Save it as HouseholdData.csv
+
+a.  Import the csv file into the R environment. Write the codes.
+
+```{r}
+library(readr)
+HouseholdData <- read_csv("HouseholdData.csv")
+HouseholdData
+```
+
+b.  Convert the Sex into factor using factor() function and change it into integer.[Legend:Male = 1 and Female = 2]. Write the R codes and its output.
+
+```{r}
+HouseholdData$Sex <- factor(HouseholdData$Sex, levels = c("Male", "Female"), labels = c(1,2))
+
+HouseholdData
+```
+
+c.  Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Congrete = 2; Semi-Congrete = 3]. Write the R codes and its output.
+
+```{r}
+HouseholdData$`Types of Houses` <- factor(HouseholdData$`Types of Houses`, levels =c("Wood", "Congrete","Semi-congrete") , labels =c(1, 2, 3) )
+
+HouseholdData
+```
+
+d.  On father's occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What is the R code and its output?
+
+```{r}
+HouseholdData$`Fathers Occupation` <- factor(HouseholdData$`Fathers Occupation`, levels =c(1,2,3) , labels =c("Farmer", "Driver", "Others") )
+HouseholdData
+```
+
+e.  Select only all females respondent that has a father whose occupation is driver. Write the codes and its output.
+
+```{r}
+num3e<-subset(HouseholdData, Sex == 2 & `Fathers Occupation` == "Driver")
+num3e
+```
+
+f.  Select the respondents that have greater than or equal to 5 number of siblings attending school. Write the codes and its output.
+
+```{r}
+num3f<-subset(HouseholdData,`Siblings at Home`>=5  )
+num3f
+```
+
+### 4. Interpret the graph.
+
+In the Sentiments of Tweets Per Day the Negative Tweets is always higher from July 14,15,17,18,20,21 in year 2020 and the Positive Tweets is in the Second place while the last place is the Neutral.
+
+In July 14, 2020: There were a total of 5,800 tweets. Among these, 2,450 were negative, 1,500 were neutral, and 1,750 were positive.
+
+In July 15, 2020: On this day, there were a total of 10,100 tweets. Out of these, 4,200 were negative, 2,750 were neutral, and 3,200 were positive.
+
+In July 17, 2020: There were 8,100 tweets in total. Of these, 3,250 were negative, 1,900 were neutral, and 2,400 were positive.
+
+In July 18, 2020:On this day, there were 8,100 tweets as well. Out of these, 3,250 were negative, 2,050 were neutral, and 2,500 were positive.
+
+In July 20, 2020: There were 5,100 tweets in total. Among these, 2,4 00 were negative, 1,450 were neutral, and 1,600 were positive.
+
+In July 21, 2020: The total number of tweets was 10,300. Out of these, 4,000 were negative, 2,700 were neutral, and 3,400 were positive.
+
+Therefore, July 15, 2020 is the highest negative tweets, In July 21, 2920 is the highest positive tweets, while the highest neutral tweets is in July 25, 2020

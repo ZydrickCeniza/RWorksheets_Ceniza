@@ -1,0 +1,243 @@
+---
+title: "RWorksheet_Ceniza#2"
+author: "Zydrick Ceniza"
+date: "2023-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# RWorksheet_Ceniza#2
+
+##### Zydrick Ceniza BSIT-2B
+
+### 1. Create a vector using : operator
+
+a.  Sequence from -5 to 5. Write the R code and its output. Describe its output.
+
+```{r}
+num1<-seq(-5,5,by=1)
+num1
+```
+
+the output sequence of is simply moving by 1 from -5 to the positive 5
+
+b.  x \<- 1:7. What will be the value of x?
+
+```{r}
+x<-1:7
+x
+```
+
+### 2. Create a vector using seq() function
+
+a.  seq(1, 3, by=0.2) \# specify step size Write the R script and its output. Describe the output.
+
+```{r}
+num2<-seq(1, 3, by=0.2)
+num2
+```
+
+the output sequence is simply moving by 0.2 from 1 to 3
+
+### 3. A factory has a census of its workers. There are 50 workers in total. The following list shows their ages: 34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18.
+
+```{r}
+workers_age<-c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+workers_age
+```
+
+a.  Access 3rd element, what is the value?
+
+```{r}
+workers_age[3]
+```
+
+b.  Access 2nd and 4th element, what are the values?
+
+```{r}
+workers_age[c(2,4)]
+```
+
+c.  Access all but the 4th and 12th element is not included. Write the R script and its output
+
+```{r}
+workers_age[c(-4,-12)]
+```
+
+### 4. Create a vector x \<- c("first"=3, "second"=0, "third"=9). Then named the vector, names(x).
+
+```{r}
+x <- c("first"=3, "second"=0, "third"=9)
+```
+
+a.  Print the results. Then access x[c("first", "third")].
+
+```{r}
+x <- c("first"=3, "second"=0, "third"=9)
+x[c("first", "third")]
+```
+
+Describe the output. The output only call the first and third and print its output
+
+### 5. Create a sequence x from -3:2.
+
+```{r}
+x<- -3:2
+x
+```
+
+a.  Modify 2nd element and change it to 0;
+
+```{r}
+x[2] <- 0
+x
+```
+
+Describe the output. The output sequence x created have been changed the 2nd element to 0
+
+### 6. \*The following data shows the diesel fuel purchased by Mr. Cruz.
+
+a.  Create a data frame for month, price per liter (php)and purchase-quantity (liter). Write the R scripts and its output.
+
+```{r}
+num6<-data.frame(
+Month=c("Jan", "Feb", "March","April","May","June"),
+Liter<-c(52.50,57.25,60.00,65.00,74.25,54.00),
+Purchase <-c(25,30,40,50,10,45)
+)
+colnames(num6) <- c("Month", "Price Per Liter(Php)", "Purchase-quantity(Liters)")
+t(num6)
+```
+
+b.  What is the average fuel expenditure of Mr. Cruz from Jan to June? Note: Use 'weighted.mean(liter, purchase)'. Write the R scripts and its output
+
+```{r}
+weighted.mean(Liter,Purchase)
+```
+
+### 7. R has actually lots of built-in datasets. For example, the rivers data "gives the lengths (in miles) of 141"major" rivers in North America, as compiled by the US Geological Survey".
+
+a.  Type "rivers" in your R console. Create a vector data with 7 elements, containing the number of elements (length) in rivers, their sum (sum), mean (mean), median(median), variance(var), standard deviation(sd), minimum (min) and maximum (max). data \<- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
+
+```{r}
+data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),sd(rivers), min(rivers), max(rivers))
+data
+```
+
+b.  What are the results?
+
+```{r echo=FALSE}
+data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),sd(rivers), min(rivers), max(rivers))
+#[1]    141.0000  83357.0000    591.1844    425.0000 243908.4086    493.8708    135.0000   3710.0000
+```
+
+### 8. The table below gives the 25 most powerful celebrities and their annual pay as ranked by the editions of Forbes magazine and as listed on the Forbes.com website.
+
+a.  Create vectors according to the above table. Write the R scripts and its output.
+
+```{r}
+num8 <- data.frame(
+Power<-c(1:25),
+Celebrity<-c("Tom Cruise","Rolling Stones","Oprah Winfrey","U2","Tiger Woods","Steven Spielberg","Howard Stern","50 Cent","Cast of the Sopranos","Dan Brown","Bruce Springteen","Donald Trump","Muhammad Ali","Paul McCartney","George Lucas","Elton John","David Letterman","Phil Mickelson","J.K. Rowling","Bradd Pitt","Peter Jackson","Dr. Phil McGrew","Jay Lenon","Celine Dion","Kobe Bryant"),
+  Pay<- c(67,90,225,110,90,332,302,41,52,88,55,44,55,40,233,34,40,47,75,25,39,45,32,40,31)
+)
+colnames(num8) <- c("Power Ranking", "Celebrity Name", "Pay")
+num8
+```
+
+b.  Modify the power ranking and pay of J.K. Rowling. Change power ranking to 15 and pay to 90.\
+    Write the R scripts and its output.
+
+```{r}
+num8 <- num8[c(1:14, 19, 15, 16:18, 20:25), ]
+num8$Pay[15]<-90
+num8$`Power Ranking`<-c(1:25)
+num8
+```
+
+c.  Create an excel file from the table above and save it as csv file(PowerRanking). Import the csv file into the RStudio. What is the R script?
+
+```{r}
+library(readr)
+PowerRanking <- read_csv("PowerRanking.csv")
+View(PowerRanking)
+```
+
+d.  Access the rows 10 to 20 and save it as Ranks.RData. Write the R script and its output.
+
+```{r}
+PowerRanking[10:20,]
+```
+
+e.  Describe its output. The output is using a `[]` in the obect in order to specify the type of array you want to get like my answer 'PowerRanking[10:20,]' in order to get the 10 to 20 solution and the comma is simply seperating the rows and columns.
+
+### 9. Download the Hotels-Vienna <https://tinyurl.com/Hotels-Vienna>
+
+a.  Import the excel file into your RStudio. What is the R script?
+
+```{r}
+library(readr)
+hotels_vienna_xlsx_hotels_vienna <- read_csv("hotels-vienna.xlsx - hotels-vienna.csv")
+View(hotels_vienna_xlsx_hotels_vienna)
+```
+
+b.  How many dimensions does the dataset have?
+
+```{r}
+dim(hotels_vienna_xlsx_hotels_vienna)
+```
+
+c.  Select columns country, neighbourhood, price, stars, accomodation_type, and ratings. Write the R script.
+
+```{r}
+View(hotels_vienna_xlsx_hotels_vienna[c(1,6,7,9,22,24)])
+num9c<-print.data.frame(hotels_vienna_xlsx_hotels_vienna[c(1,6,7,9,22,24)])
+num9c
+```
+
+d.  Save the data as \*\*new.RData to your RStudio. Write the R script.
+
+```{r}
+write.csv(num9c, file = "new.RData")
+```
+
+e.  Display the first six rows and last six rows of the new.RData. What is the R script?
+
+```{r}
+library(readr)
+new_RData <- read_csv("new.RData.csv")
+View(new_RData)
+new_RData[1:6,]
+```
+
+### 10. Create a list of ten (10) vegetables you ate during your lifetime. If none, just list down.
+
+a.  Write the R scripts and its output.
+
+```{r}
+vegetable<-list("cabbage","tomato","eggplant","onions","potato","carrot","cucumber","radish","broccoli","garlic")
+vegetable
+```
+
+b.  Add 2 additional vegetables after the last vegetables in the list. What is the R script and its output?
+
+```{r}
+vegetable_new1<-append(vegetable,c("spinach","olive"), after = 10)
+vegetable_new1
+```
+
+c.  Add 4 additional vegetables after index 5. How many datapoints does your vegetable list have? What is the R script and its output?
+
+```{r}
+vegetable_new2<-append(vegetable_new1,c("pea","cauliflower","beans","mushroom"), after = 5)
+vegetable_new2
+```
+
+d.  Remove the vegetables in index 5, 10, and 15. How many vegetables were left? Write the codes and its output.
+
+```{r}
+vegetable_new2[c(-5,-10,-15)]
+```
