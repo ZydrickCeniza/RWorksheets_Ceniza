@@ -1,0 +1,261 @@
+---
+title: "RWorksheet_Ceniza#4a"
+author: "Zydrick Ceniza"
+date: "2023-10-25"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Worksheet-4a in R
+
+### Zydrick Ceniza BSIT-2B
+
+## 1. The table below shows the data about shoe size and height. Create a data frame.
+
+a.  Describe the data. The data imported choose the column shoes size
+    and height
+
+```{r}
+library(readxl)
+Shoes <- read_excel("Shoes.xlsx")
+Shoes[,1:2]
+str(Shoes)
+```
+
+b.  Create a subset by males and females with their corresponding shoe
+    size and height. What its result? Show the R scripts.
+
+```{r}
+subsetMale <- subset(Shoes,Gender == "M")
+subsetMale
+subsetFemale <- subset(Shoes,Gender == "F")
+subsetFemale
+```
+
+c.  Find the mean of shoe size and height of the respondents. Write the
+    R scripts and its result.
+
+```{r}
+num1c<-factor
+mean(Shoes$`Shoe size`)
+mean(Shoes$Height)
+```
+
+d.  Is there a relationship between shoe size and height? Why?
+Yes, there is a relationship between shoe size and height like the taller you are the bigger the shoes size.
+
+##2. Construct character vector months to a factor with factor() and
+assign the result to factor_months_vector. Print out
+factor_months_vector and assert that R prints out the factor levels
+below the actual values. Consider data consisting of the names of
+months:
+"March","April","January","November","January","September","October","September","November","August","January","November","November","February","May","August","July","December","August","August","September,"November","February",April")
+
+```{r}
+months_vector <- c("March", "April", "January", "November", "January","September", "October", "September", "November", "August","January", "November", "November", "February", "May", "August","July", "December", "August", "August", "September", "November", "February", "April")
+
+factor_months_vector <- factor(months_vector)
+
+factor_months_vector
+```
+
+##3. Then check the summary() of the months_vector and
+factor_months_vector. \| Inter-pret the results of both vectors. Are
+they both equally useful in this case?
+
+```{r}
+summary(months_vector)
+summary(factor_months_vector)
+#The result in summary of months_vector it just interpret the length, class, and mode of it and in the summary of factors_months_vectors it interpret how many number the months repeat itself in a vector.
+```
+
+The result in summary of months_vector it just interpret the length,
+class, and mode of it and in the summary of factors_months_vectors it
+interpret how many number the months repeat itself in a vector.
+
+##4. Create a vector and factor for the table below.
+
+```{r}
+factor_data<-c("East","West","North","West","North","North","West","West")
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+dir<-c("East","West","West","North","West","North","West","North")
+dirsum<-factor(dir)
+summary(dirsum)
+num4<-data.frame(
+  Direction=c("East","West","North"),
+  Frequency=c(1,4,3)
+)
+num4
+
+```
+
+##5. Enter the data below in Excel with file name = import_march.csv
+
+a\. Import the excel file into the Environment Pane using read.table()
+function. Write the code.
+
+```{r}
+library(readr)
+data <- read.table("import_march.csv", header = TRUE, sep = ",")
+data
+```
+
+b.  View the dataset. Write the R scripts and its result.
+
+```{r}
+View(data)
+```
+
+#Using Conditional Statements (IF-ELSE)
+
+##6. Full Search Exhaustive search is a methodology for finding an
+answer by exploring all possible cases. When trying to find a desired
+number in a set of given numbers, the method of finding the
+corresponding number by checking all elements in the set one by one can
+be called an exhaustive search. Implement an exhaustive search function
+that meets the input/output conditions below.
+
+a.  Create an R Program that allows the User to randomly select numbers
+    from 1 to 50. Then display the chosen number. If the number is
+    beyond the range of the selected choice, it will have to display a
+    string "The number selected is beyond the range of 1 to 50". If
+    number 20 is inputted by the User, it will have to display "TRUE",
+    otherwise display the input number.
+
+```{r}
+num6a<-readline(prompt = "Enter a number 1 to 50")
+if(num6a>=50){
+  print("The number selected is beyond the range of 1 to 50")
+} else if(num6a==20){
+  print("TRUE")
+} else{
+  num6a
+}
+```
+
+## 7. Change
+
+At ISATU University's traditional cafeteria, snacks can only be
+purchased with bills. A long-standing rule at the concession stand is
+that snacks must be purchased with as few coins as possible. There are
+three types of bills: 50 pesos, 100 pesos, 200 pesos, 500 pesos, 1000
+pesos. a. Write a function that prints the minimum number of bills that
+must be paid, given the price of the snack. Input: Price of snack (a
+random number divisible by 50) Output: Minimum number of bills needed to
+purchase a snack.
+
+```{r}
+bills <- c(1000, 500, 200, 100, 50)
+price<-as.numeric(readline(prompt = "Enter a price"))
+if(price< 50) {
+  print("Price is too low. Cannot provide change.")
+} else if (price == 50) {
+  print("Minimum bills is")
+  print(bills[5])
+} else if (price < 150) {
+  print("Minimum bills are")
+  print(bills[c(5, 4)])
+} else if (price < 450) {
+  print("Minimum bills are")
+  print(bills[c(5, 4, 3)])
+} else if (price < 950) {
+  print("Minimum bills are")
+  print(bills[c(5, 4, 3, 2)])
+} else if (price >= 1000) {
+  print("Minimum bills are")
+  print(bills)
+}
+
+```
+
+## 8. The following is each student's math score for one semester. Based on this, answer the following questions.
+
+a.  Create a dataframe from the above table. Write the R codes and its
+    output.
+
+```{r}
+num8a<-data.frame(
+  Name=c("Annie","Thea","Steve","Hanna"),
+  Grade1=c(85,65,75,95),
+  Grade2=c(65,75,55,75),
+  Grade3=c(85,90,80,100),
+  Grade4=c(100,90,85,90)
+)
+num8a
+```
+
+b.  Without using the rowMean function, output the average score of
+    students whose average math score over 90 points during the
+    semester. write R code and its output. Example Output: Annie's
+    average grade this semester is 88.75.
+
+```{r}
+Average <- (num8a$Grade1 + num8a$Grade2 + num8a$Grade3 + num8a$Grade4) / 4
+num8a$Average<-c(Average)
+high_avg_students <- num8a[num8a$Average > 90,]
+i<-c(1:4)
+if(num8a$Average[1]> 90){
+  cat(num8a$Name[1], "'s average grade this semester is ", num8a$Average[1], ".\n")
+} else if(num8a$Average[2]> 90){
+  cat(num8a$Name[2], "'s average grade this semester is ", num8a$Average[2], ".\n")
+} else if(num8a$Average[3]> 90){
+  cat(num8a$Name[3], "'s average grade this semester is ", num8a$Average[3], ".\n")
+} else if(num8a$Average[4]> 90){
+  cat(num8a$Name[4], "'s average grade this semester is ", num8a$Average[4], ".\n")
+}
+
+
+```
+
+c.  Without using the mean function, output as follows for the tests in
+    which the average score was less than 80 out of 4 tests. Example
+    output: The nth test was difficult.
+
+```{r}
+term<-c("1st","2nd","3rd","4th")
+average1<-sum(num8a$Grade1)/4
+average2<-sum(num8a$Grade2)/4
+average3<-sum(num8a$Grade3)/4
+average4<-sum(num8a$Grade4)/4
+if(average1<80){
+  cat("The",term[1],"testwas difficult.")
+}else if(average2<80){
+  cat("The",term[2],"testwas difficult.")
+}else if(average3<80){
+  cat("The",term[3],"testwas difficult.")
+}else if(average4<80){
+  cat("The",term[4],"testwas difficult.")
+}
+```
+
+d.  Without using the max function, output as follows for students whose
+    highest score for a semester exceeds 90 points. Example Output:
+    Annie's highest grade this semester is 95.
+
+```{r}
+for(i in 1:4){
+  if(num8a$Grade1[i]>90){
+  cat(num8a$Name[i], "highest grade this semester is ", round(num8a$Grade1[i],2), ".\n")
+  }}
+for(i in 1:4){
+  if(num8a$Grade2[i]>90){
+  cat(num8a$Name[i], "highest grade this semester is ", round(num8a$Grade2[i],2), ".\n")
+  }}
+for(i in 1:4){
+  if(num8a$Grade3[i]>90){
+  cat(num8a$Name[i], "highest grade this semester is ", round(num8a$Grade3[i],2), ".\n")
+  }}
+for(i in 1:4){
+  if(num8a$Grade4[i]>90){
+  cat(num8a$Name[i], "highest grade this semester is ", round(num8a$Grade4[i],2), ".\n")
+}}
+```
