@@ -1,0 +1,100 @@
+---
+title: "RWorksheet_Ceniza#4c"
+author: "Zydrick Ceniza"
+date: "2023-11-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# RWorksheet_Ceniza#4c
+
+### 1. Use the dataset mpg
+
+### a. Show your solutions on how to import a csv file into the environment.
+
+```{r}
+library(readr)
+mpg <- read.csv("mpg.csv")
+mpg
+```
+
+### b. Which variables from mpg dataset are categorical?
+
+### c. Which are continuous variables?
+
+## 2. Which manufacturer has the most models in this data set? Which model has the most variations?
+
+Show your answer.`The manufacturer has the most model is the dodge and caravan 2wd has the most models in the manufacturer of dodge`
+
+```{r}
+num1a<-factor(mpg$manufacturer)
+num1a1<-summary(num1a)
+num1a1
+max(num1a1)
+md<-factor(mpg$model)
+summary(md)
+max(summary(md))
+```
+
+### a. Group the manufacturers and find the unique models. Show your codes and result
+```{r}
+num1a<-factor(mpg$manufacturer)
+num1a1<-summary(num1a)
+num1a1
+```
+
+### b. Graph the result by using plot() and ggplot(). Write the codes and its result.
+
+```{r}
+ggplot(mpg, aes(model, manufacturer)) + geom_point() + scale_color_manual(values = c("audi" = "red", "chvrolet" = "green", "dodge" = "blue","ford"="purple","honda"="violet","hyundai"="pink","jeep"="yellow","land rover"="orange","lincoln"="maroon","mercury"="skyblue","nissan"="grey","pontiac"="white","subaru"="black","toyota"="brown","volkswagen"="orangered"))
+
+```
+
+## 2. Same dataset will be used. You are going to show the relationship of the modeland the manufacturer.
+
+## a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
+`The plot shows the model and manufacturer in a black and white color`
+```{r}
+ggplot(mpg, aes(model, manufacturer)) + geom_point()
+```
+## b. For you, is it useful? If not, how could you modify the data to make it more informative?
+`Yes,it is useful in order make a comparison to make decisions and soltuions.`
+
+## 3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its results.
+```{r}
+
+ggplot(mpg, aes(model, year)) + geom_point()
+```
+
+## 4. Using the pipe (%>%), group the model and get the number of cars per model. Show codes and its result.
+```{r}
+
+library(dplyr)
+num4<-mpg %>% 
+ group_by(model) %>% 
+ summarise(count = n()) %>% 
+ arrange(desc(count))
+
+num4
+```
+### a. Plot using geom_bar() using the top 20 observations only. The graphs shoudl have a title, labels and colors. Show code and results.
+```{r}
+ob20<-num4[1:20,1:2]
+ggplot(num4, aes(model, count)) + geom_point()
+```
+### b. Plot using the geom_bar() + coord_flip() just like what is shown below. Show codes and its result.
+```{r}
+ggplot(num4, aes(x = model, y = count)) +
+ geom_bar(stat = "identity", fill = "skyblue") +
+ coord_flip() +
+ theme_minimal() +
+ labs(title = "Number of Cars per Model",
+      x = "Model",
+      y = "Count") +
+ scale_x_discrete(limits =num4$model)
+
+```
+
