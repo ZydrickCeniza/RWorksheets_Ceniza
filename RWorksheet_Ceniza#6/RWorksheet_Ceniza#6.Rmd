@@ -1,0 +1,52 @@
+---
+title: "RWorksheet_Ceniza#6"
+author: "Zydrick Ceniza"
+date: "2023-12-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Worksheet-6 in R (Individual Activity)
+## RWorksheet_Ceniza#6
+
+## Basic Statistics
+### 1. Create a data frame for the table below. Show your solution.
+
+#### a. Compute the descriptive statistics using different packages (Hmisc and pastecs).
+Write the codes and its result.
+```{r}
+# Assuming you have a dataset like this
+num1 <- data.frame(
+  ID = c(1, 2, 3, 4, 5,6,7,8,9,10),
+  Age = c(55,54,47,57,51,61,57,54,63,58),
+  Salary = c(61,60,56,63,56,63,59,56,62,61)
+)
+
+# Print the created data frame
+num1
+
+# Install and load necessary packages
+  install.packages("Hmisc")
+
+  install.packages("pastecs")
+
+library(Hmisc)
+library(pastecs)
+
+# Descriptive statistics using Hmisc
+summary_hmisc <- Hmisc::describe(data)
+print(summary_hmisc)
+
+# Descriptive statistics using pastecs
+summary_pastecs <- pastecs::stat.desc(data)
+print(summary_pastecs)
+
+
+```
+
+### 2. The Department of Agriculture was studying the effects of several levels of a fertilizer
+on the growth of a plant. For some analyses, it might be useful to convert the fertilizer
+levels to an ordered factor.
