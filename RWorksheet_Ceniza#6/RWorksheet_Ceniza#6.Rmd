@@ -18,17 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 #### a. Compute the descriptive statistics using different packages (Hmisc and pastecs).
 Write the codes and its result.
 ```{r}
-# Assuming you have a dataset like this
+
 num1 <- data.frame(
   ID = c(1, 2, 3, 4, 5,6,7,8,9,10),
   Age = c(55,54,47,57,51,61,57,54,63,58),
   Salary = c(61,60,56,63,56,63,59,56,62,61)
 )
 
-# Print the created data frame
+
 num1
 
-# Install and load necessary packages
+
   install.packages("Hmisc")
 
   install.packages("pastecs")
@@ -36,17 +36,61 @@ num1
 library(Hmisc)
 library(pastecs)
 
-# Descriptive statistics using Hmisc
-summary_hmisc <- Hmisc::describe(data)
-print(summary_hmisc)
 
-# Descriptive statistics using pastecs
-summary_pastecs <- pastecs::stat.desc(data)
-print(summary_pastecs)
+summary_hmisc <- Hmisc::describe(num1)
+summary_hmisc
+
+
+summary_pastecs <- pastecs::stat.desc(num1)
+summary_pastecs
 
 
 ```
 
-### 2. The Department of Agriculture was studying the effects of several levels of a fertilizer
-on the growth of a plant. For some analyses, it might be useful to convert the fertilizer
-levels to an ordered factor.
+### 2. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
+```{r}
+data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
+
+ordered_factor <- factor(data, levels = c(10, 20, 50), ordered = TRUE)
+summary(ordered_factor)
+ordered_factor
+
+
+```
+
+
+## 3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”, “n”, “i”, “l” ; n=none, l=light, i=intense
+### a. What is the best way to represent this in R?
+```{r}
+
+exercise_levels <- c("l", "n", "n", "i", "l", "l", "n", "n", "i", "l")
+
+exercise_factor <- factor(exercise_levels, levels = c("n", "l", "i"), ordered = TRUE)
+summary(exercise_factor)
+
+exercise_factor
+
+
+```
+
+
+## 4. Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
+## state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld","vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt", "wa","vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw", "vic", "vic", "act")
+```{r}
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld","vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt", "wa","vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw", "vic", "vic", "act")
+
+set.seed(123)
+
+sample_tax_accountants <- sample(state, 30, replace = TRUE)
+
+print(sample_tax_accountants)
+```
+
+
+
+
+
+
+
+
+
